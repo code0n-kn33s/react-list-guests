@@ -7,7 +7,7 @@ const GuestList = ({ data, update, arrived, showDescription }) => {
     if (!guest.isActive){
       return (
         <GuestData
-          key={guest._id}
+          key={guest.index}
           guest={guest}
           index={guest.index}
           update={update}
@@ -16,7 +16,7 @@ const GuestList = ({ data, update, arrived, showDescription }) => {
         />
       )
     } else {
-      return null;
+      return null
     }
   });
 

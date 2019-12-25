@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Head from './Head'
 import GuestList from './GuestList'
 import ActiveGuest from './ActiveGuest'
-import SearchGuests from './SearchGuests'
+import { Search, Notify } from '../Helpers'
 
 import ApiGuests from './assets/guests.json'
 import './assets/style.css'
@@ -37,7 +37,8 @@ class TestTask extends Component {
     data: ApiGuests,
     viewGuest: ApiGuests[0],
     open: false,
-    value: 5
+    value: 3,
+    error: ''
   }
 
   filterGuests = (e) => {
@@ -69,6 +70,13 @@ class TestTask extends Component {
 
   changeCount = (e) => {
     let { value } = e.target
+
+    if ( value < 0 || value > this.state.data.length ) {
+      this.setState({
+        value: value
+      })
+      return
+    }
 
     this.setState({
       value: value
@@ -108,7 +116,7 @@ class TestTask extends Component {
   }
 
   render() {
-    const { value, viewGuest, data, open } = this.state
+    const { value, viewGuest, data, open, error } = this.state
     const { filterGuests, selectUser, isArrived, isShowDescription, toggleGuestsView, changeCount } = this
 
     let arr = data.slice(0, value)
@@ -122,8 +130,18 @@ class TestTask extends Component {
           changeCount={changeCount}
           toggleGuestsView={toggleGuestsView}
         />
+        {
+          error &&
+            <Notify
+              text="достигнуто максимальное количество гостей"
+              type="error"
+            />
+        }
         <div className={`list-wrapper ${ !open ? 'closed' : '' }`}>
-          <SearchGuests filterAction={filterGuests} />
+          <Search
+            onChange={filterGuests}
+            placeholder="Кого еще позвать на вечеринку?"
+          />
           <div className="list-content">
             {
               viewGuest !== null && (

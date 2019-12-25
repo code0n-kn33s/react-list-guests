@@ -2,8 +2,8 @@ import React from 'react'
 
 const ActiveGuest = ({ data }) => {
   return (
-    <div className="guest-card" style={{ padding: '20px', border: '1px solid'}}>
-      <div className="card-item" style={{ textAlign: 'center' }}>
+    <div className="guest-card">
+      <div className="card-item">
         <img src={"https://randomuser.me/api/portraits/men/" + data.index + ".jpg"} alt=""/>
       </div>
       <div className="card-item">

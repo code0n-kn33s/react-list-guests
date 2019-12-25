@@ -4,7 +4,7 @@
   color: #424040;
 }
 .content-wrapper {
-  width: 50%;
+  width: 778px;
   margin: auto;
 }
 .content {
@@ -14,21 +14,26 @@
   display: flex;
 }
 .list-wrapper {
-  transition: .7s;
+  display: block;
+  transition: .9s;
   max-height: 9000px;
   overflow: hidden;
 }
 .list-wrapper.closed {
   max-height: 0;
-
+}
+.guest-list {
+  overflow: scroll;
+  height: 80vh;
+  padding: 10px 0;
+  margin: 10px 0;
 }
 .guest-card {
   padding: 20px;
   width: 40%;
-}
-.guest-list {
-  padding: 10px 0;
-  margin: 10px 0;
+  height: fit-content;
+  margin-top: 20px;
+  border: 1px solid;
 }
 .guest-item {
   padding: 15px;
@@ -37,7 +42,8 @@
   list-style-type: none;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  position: sticky;
+  top: 0px;
 }
 .guest-item:hover {
   background: #f9f9f9;
@@ -53,8 +59,13 @@
 .guest-search {
   width: 100%;
   height: 40px;
-  background: lightgray;
-  padding-left: 20px;
+  border: 1px solid gray;
+  outline: none;
+  font-size: 20px;
+  border-radius: 7px;
+  margin-top: 10px;
+  background: #e3e3d3;
+  padding: 30px 40px;
   color: #424040;
 }
 .guest-card {
@@ -69,7 +80,7 @@
 }
 .guests-header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   vertical-align: center;
 }
 .guests-header-title {
@@ -113,4 +124,14 @@
   height: 70px;
   margin-left: 20px;
   padding: 10px;
+}
+.guest-photo {
+  margin-right: 15px;
+}
+.guest-info button {
+  margin-top: 20px;
+}
+.button-arrived {
+  padding: 5px 10px;
+  width: 140px;
 }

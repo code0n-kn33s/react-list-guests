@@ -11,17 +11,18 @@ const Head = ({ title, value, changeCount, toggled, toggleGuestsView }) => {
         <div className="guests-header-subtitle">{listSubGuests}</div>
       </div>
       <div>
-        <button onClick={toggleGuestsView} className="guests-header-beer">
-          <img src={FaBeer} alt="FaBeer" className="guests-header-beer-img"/>
-        </button>
         {
-          toggled && <input
+          toggled && 
+          <input
             className="guests-header-beer-num"
             type="number"
             onChange={changeCount}
             value={ value }
           />
         }
+        <button onClick={toggleGuestsView} className="guests-header-beer">
+          <img src={FaBeer} alt="FaBeer" className="guests-header-beer-img"/>
+        </button>
       </div>
     </div>
   )
