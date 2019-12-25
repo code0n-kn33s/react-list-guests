@@ -99,7 +99,18 @@
   color: white;
   cursor: pointer;
   outline: none;
+  display: inline-block;
+  vertical-align: middle;
 }
 .guests-header-beer-img {
   height: 40px;
+}
+.guests-header-beer-num {
+  font-size: 30px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100px;
+  height: 70px;
+  margin-left: 20px;
+  padding: 10px;
 }

@@ -9,49 +9,51 @@ import ApiGuests from './assets/guests.json'
 import './assets/style.css'
 
 const isFindFn = (objPart, value) => {
-  let isFindx = false;
+  let isFindx = false
 
   if (typeof (objPart) === 'object') {
 
     for (let key in objPart) {
-      isFindx = isFindFn(objPart[key], value);
+      isFindx = isFindFn(objPart[key], value)
     }
   }
 
   if (typeof (objPart) === 'string') {
     if (objPart.toLowerCase().indexOf(value) !== -1) {
-      isFindx = true;
+      isFindx = true
     }
   }
 
   if (typeof (objPart) === 'number') {
     if (objPart.toString().indexOf(value) !== -1) {
-      isFindx = true;
+      isFindx = true
     }
   }
-  return isFindx;
+  return isFindx
 }
 
 class TestTask extends Component {
   state = {
     data: ApiGuests,
     viewGuest: ApiGuests[0],
-    open: false
+    open: false,
+    value: 5
   }
 
   filterGuests = (e) => {
-    const val = e.target.value.toLowerCase();
+    const val = e.target.value.toLowerCase()
 
     let result = ApiGuests.filter(item => {
-      let isFind = false;
+      let isFind = false
 
       for (let key in item) {
         if (isFindFn(item[key], val)) {
-          isFind = true;
+          isFind = true
         }
       }
-      return isFind;
-    });
+      return isFind
+    })
+
     this.setState({
       data: result
     })
@@ -65,10 +67,18 @@ class TestTask extends Component {
     this.setState(config)
   }
 
+  changeCount = (e) => {
+    let { value } = e.target
+
+    this.setState({
+      value: value
+    })
+  }
+
   selectUser = (guest) => (e) => {
     this.setState({
       viewGuest: guest
-    });
+    })
   }
 
   clearGuests = () => {
@@ -76,18 +86,18 @@ class TestTask extends Component {
   }
 
   isArrived = (guest) => (e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     let newArray = this.state.data.map(item => {
       if (item._id === guest._id) {
-        item.isActive = !item.isActive;
+        item.isActive = !item.isActive
       }
-      return item;
-    });
+      return item
+    })
 
     this.setState({ data: newArray })
   }
 
-  closeGuestsList = () => {
+  toggleGuestsView = () => {
     this.setState({
       open: !this.state.open
     })
@@ -98,12 +108,20 @@ class TestTask extends Component {
   }
 
   render() {
-    const { viewGuest, data, open } = this.state
-    const { filterGuests, selectUser, isArrived, isShowDescription, closeGuestsList} = this
+    const { value, viewGuest, data, open } = this.state
+    const { filterGuests, selectUser, isArrived, isShowDescription, toggleGuestsView, changeCount } = this
+
+    let arr = data.slice(0, value)
 
     return (
       <div className="content-wrapper">
-        <Head title='Список гостей' closeGuestsList={closeGuestsList} />
+        <Head
+          title='Список гостей'
+          value={value}
+          toggled={open}
+          changeCount={changeCount}
+          toggleGuestsView={toggleGuestsView}
+        />
         <div className={`list-wrapper ${ !open ? 'closed' : '' }`}>
           <SearchGuests filterAction={filterGuests} />
           <div className="list-content">
@@ -115,7 +133,7 @@ class TestTask extends Component {
               )
             }
             <GuestList
-              data={data}
+              data={arr}
               update={selectUser}
               arrived={isArrived}
               showDescription={isShowDescription}
