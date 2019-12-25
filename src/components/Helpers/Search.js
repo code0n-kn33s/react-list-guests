@@ -1,12 +1,12 @@
 import React from 'react'
 
-export const Search = ({ onChange }) => {
+export const Search = ({ onChange, placeholder }) => {
   return (
     <input
       type="text"
       className="guest-search"
       onChange={onChange}
-      placeholder="Введите имя гостя для поиска"
+      placeholder={placeholder ? placeholder : "Введите имя гостя для поиска"}
     />
   )
 }

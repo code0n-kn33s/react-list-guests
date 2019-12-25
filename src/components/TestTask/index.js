@@ -37,7 +37,7 @@ class TestTask extends Component {
     data: ApiGuests,
     viewGuest: ApiGuests[0],
     open: false,
-    value: 3,
+    value: 5,
     error: ''
   }
 
@@ -111,9 +111,9 @@ class TestTask extends Component {
     })
   }
 
-  isShowDescription = (display) => (e) => {
-    display = true
-  }
+  // isShowDescription = (display) => (e) => {
+  //   display = true
+  // }
 
   render() {
     const { value, viewGuest, data, open, error } = this.state
@@ -140,7 +140,7 @@ class TestTask extends Component {
         <div className={`list-wrapper ${ !open ? 'closed' : '' }`}>
           <Search
             onChange={filterGuests}
-            placeholder="Кого еще позвать на вечеринку?"
+            placeholder="отыщет по-любому - значению в поле..."
           />
           <div className="list-content">
             {
